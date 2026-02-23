@@ -253,15 +253,16 @@ class CourseApp {
         this.statCompletionRate = document.getElementById('statCompletionRate');
 
         // Filters & View
-        this.filterChips = document.querySelectorAll('.filter-chip');
+        this.filterTabs = document.querySelectorAll('.filter-tab');
         this.categoryFilter = document.getElementById('categoryFilter');
+        this.sidebarBackdrop = document.getElementById('sidebarBackdrop');
         this.viewBtns = document.querySelectorAll('.view-btn');
         this.coursesGrid = document.getElementById('coursesGrid');
         this.emptyState = document.getElementById('emptyState');
 
         // Page Header
         this.pageTitle = document.getElementById('pageTitle');
-        this.pageSubtitle = document.getElementById('pageSubtitle');
+        this.pageDescription = document.getElementById('pageDescription');
 
         // Modals
         this.courseModal = document.getElementById('courseModal');
@@ -315,11 +316,11 @@ class CourseApp {
         });
 
         // Filters
-        this.filterChips.forEach(chip => {
-            chip.addEventListener('click', () => {
-                this.filterChips.forEach(c => c.classList.remove('active'));
-                chip.classList.add('active');
-                this.state.currentFilter = chip.dataset.filter;
+        this.filterTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                this.filterTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                this.state.currentFilter = tab.dataset.filter;
                 this.renderCourses();
             });
         });
@@ -386,23 +387,13 @@ class CourseApp {
 
     openMobileSidebar() {
         this.sidebar.classList.add('mobile-open');
-        let backdrop = document.querySelector('.sidebar-backdrop');
-        if (!backdrop) {
-            backdrop = document.createElement('div');
-            backdrop.className = 'sidebar-backdrop';
-            document.body.appendChild(backdrop);
-        }
-        setTimeout(() => backdrop.classList.add('active'), 10);
-        backdrop.addEventListener('click', () => this.closeMobileSidebar());
+        this.sidebarBackdrop.addEventListener('click', () => this.closeMobileSidebar());
+        setTimeout(() => this.sidebarBackdrop.classList.add('active'), 10);
     }
 
     closeMobileSidebar() {
         this.sidebar.classList.remove('mobile-open');
-        const backdrop = document.querySelector('.sidebar-backdrop');
-        if (backdrop) {
-            backdrop.classList.remove('active');
-            setTimeout(() => backdrop.remove(), 300);
-        }
+        this.sidebarBackdrop.classList.remove('active');
     }
 
     setActiveNav(activeLink) {
@@ -410,15 +401,15 @@ class CourseApp {
         activeLink.classList.add('active');
         const section = activeLink.dataset.section;
         const titles = {
-            dashboard: { title: 'Dashboard', subtitle: 'Bienvenido de nuevo. Aquí tienes un resumen de tus cursos.' },
-            courses: { title: 'Mis Cursos', subtitle: 'Gestiona y organiza todos tus cursos educativos.' },
-            categories: { title: 'Categorías', subtitle: 'Explora los cursos por categoría.' },
-            students: { title: 'Estudiantes', subtitle: 'Visualiza los estudiantes inscriptos en tus cursos.' },
-            analytics: { title: 'Analíticas', subtitle: 'Estadísticas y métricas de tus cursos.' }
+            dashboard: { title: 'Dashboard', description: 'Bienvenido de nuevo. Aquí tienes el resumen de tu plataforma educativa.' },
+            courses: { title: 'Mis Cursos', description: 'Gestiona y organiza todos tus cursos educativos.' },
+            categories: { title: 'Categorías', description: 'Explora los cursos por categoría.' },
+            students: { title: 'Estudiantes', description: 'Visualiza los estudiantes inscriptos en tus cursos.' },
+            analytics: { title: 'Analíticas', description: 'Estadísticas y métricas de tus cursos.' }
         };
         const info = titles[section] || titles.dashboard;
-        this.pageTitle.textContent = info.title;
-        this.pageSubtitle.textContent = info.subtitle;
+        this.pageTitle.innerHTML = `<span class="title-ornament"></span>${info.title}`;
+        this.pageDescription.textContent = info.description;
     }
 
     // --- RENDER ---
