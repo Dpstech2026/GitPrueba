@@ -5,8 +5,8 @@
 :root {
     /* === COLOR PALETTE === */
     /* Core Colors */
-    --color-cream: #F5F0E8;
-    --color-cream-light: #FAF7F2;
+    --color-cream: #FFFFFF;
+    --color-cream-light: #FFFFFF;
     --color-warm-white: #FFFDF9;
     --color-warm-gray: #E8E4DE;
     --color-warm-gray-dark: #C4BFB6;
@@ -686,7 +686,7 @@ textarea {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
     opacity: 0;
     transition: opacity var(--transition-fast);
 }
@@ -1061,6 +1061,7 @@ textarea {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -1611,6 +1612,7 @@ textarea {
         opacity: 0;
         transform: translateX(100%);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -1638,6 +1640,7 @@ textarea {
     from {
         width: 100%;
     }
+
     to {
         width: 0;
     }
