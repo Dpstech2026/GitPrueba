@@ -5,11 +5,11 @@
 :root {
     /* === COLOR PALETTE === */
     /* Core Colors */
-    --color-cream: #FFFFFF;
-    --color-cream-light: #FFFFFF;
-    --color-warm-white: #FFFDF9;
-    --color-warm-gray: #E8E4DE;
-    --color-warm-gray-dark: #C4BFB6;
+    --color-cream: #37a94a;
+    --color-cream-light: #cb3131;
+    --color-warm-white: #261f10;
+    --color-warm-gray: #c9253a;
+    --color-warm-gray-dark: #2ca161;
 
     /* Dark Tones */
     --color-charcoal: #2A2926;
