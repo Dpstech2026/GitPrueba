@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Panel de gestión de cursos - Administra, organiza y supervisa todos tus cursos educativos desde un solo lugar.">
+    <title>CourseHub — Gestión de Cursos</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon material-icons-round">school</span>
+                <span class="logo-text">CourseHub</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle sidebar">
+                <span class="material-icons-round">menu</span>
+            </button>
+        </div>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-link active" data-section="dashboard" id="nav-dashboard">
+                <span class="material-icons-round">dashboard</span>
+                <span class="nav-text">Dashboard</span>
+            </a>
+            <a href="#" class="nav-link" data-section="courses" id="nav-courses">
+                <span class="material-icons-round">menu_book</span>
+                <span class="nav-text">Cursos</span>
+            </a>
+            <a href="#" class="nav-link" data-section="categories" id="nav-categories">
+                <span class="material-icons-round">category</span>
+                <span class="nav-text">Categorías</span>
+            </a>
+            <a href="#" class="nav-link" data-section="students" id="nav-students">
+                <span class="material-icons-round">groups</span>
+                <span class="nav-text">Estudiantes</span>
+            </a>
+            <a href="#" class="nav-link" data-section="analytics" id="nav-analytics">
+                <span class="material-icons-round">analytics</span>
+                <span class="nav-text">Analíticas</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <div class="user-card">
+                <div class="user-avatar">LC</div>
+                <div class="user-info">
+                    <span class="user-name">Admin</span>
+                    <span class="user-role">Administrador</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Top Bar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+                    <span class="material-icons-round">menu</span>
+                </button>
+                <div class="search-box" id="searchBox">
+                    <span class="material-icons-round search-icon">search</span>
+                    <input type="text" placeholder="Buscar cursos, categorías..." id="searchInput" autocomplete="off">
+                    <kbd class="search-shortcut">Ctrl+K</kbd>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <button class="topbar-btn" id="notificationsBtn" aria-label="Notifications">
+                    <span class="material-icons-round">notifications</span>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="topbar-btn" id="themeToggle" aria-label="Toggle theme">
+                    <span class="material-icons-round">dark_mode</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <div class="page-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-header-text">
+                    <h1 id="pageTitle">Dashboard</h1>
+                    <p class="page-subtitle" id="pageSubtitle">Bienvenido de nuevo. Aquí tienes un resumen de tus
+                        cursos.</p>
+                </div>
+                <button class="btn btn-primary" id="addCourseBtn">
+                    <span class="material-icons-round">add</span>
+                    Nuevo Curso
+                </button>
+            </div>
+
+            <!-- Stats Cards -->
+            <section class="stats-grid" id="statsGrid">
+                <div class="stat-card" id="stat-total">
+                    <div class="stat-icon" style="--accent: #7c3aed;">
+                        <span class="material-icons-round">menu_book</span>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statTotalCourses">0</span>
+                        <span class="stat-label">Total Cursos</span>
+                    </div>
+                    <div class="stat-trend up">
+                        <span class="material-icons-round">trending_up</span>
+                        <span>+12%</span>
+                    </div>
+                </div>
+                <div class="stat-card" id="stat-active">
+                    <div class="stat-icon" style="--accent: #06b6d4;">
+                        <span class="material-icons-round">play_circle</span>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statActiveCourses">0</span>
+                        <span class="stat-label">Cursos Activos</span>
+                    </div>
+                    <div class="stat-trend up">
+                        <span class="material-icons-round">trending_up</span>
+                        <span>+8%</span>
+                    </div>
+                </div>
+                <div class="stat-card" id="stat-students">
+                    <div class="stat-icon" style="--accent: #f59e0b;">
+                        <span class="material-icons-round">groups</span>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statTotalStudents">0</span>
+                        <span class="stat-label">Estudiantes</span>
+                    </div>
+                    <div class="stat-trend up">
+                        <span class="material-icons-round">trending_up</span>
+                        <span>+24%</span>
+                    </div>
+                </div>
+                <div class="stat-card" id="stat-completion">
+                    <div class="stat-icon" style="--accent: #10b981;">
+                        <span class="material-icons-round">verified</span>
+                    </div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statCompletionRate">0%</span>
+                        <span class="stat-label">Tasa Completado</span>
+                    </div>
+                    <div class="stat-trend down">
+                        <span class="material-icons-round">trending_down</span>
+                        <span>-3%</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filters & View Toggle -->
+            <section class="toolbar" id="toolbar">
+                <div class="filter-group">
+                    <div class="filter-chip-group" id="filterChips">
+                        <button class="filter-chip active" data-filter="all" id="filter-all">Todos</button>
+                        <button class="filter-chip" data-filter="active" id="filter-active">Activos</button>
+                        <button class="filter-chip" data-filter="draft" id="filter-draft">Borrador</button>
+                        <button class="filter-chip" data-filter="archived" id="filter-archived">Archivados</button>
+                    </div>
+                    <select class="filter-select" id="categoryFilter">
+                        <option value="all">Todas las categorías</option>
+                        <option value="programming">Programación</option>
+                        <option value="design">Diseño</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="business">Negocios</option>
+                        <option value="data">Datos & IA</option>
+                    </select>
+                </div>
+                <div class="view-toggle" id="viewToggle">
+                    <button class="view-btn active" data-view="grid" id="viewGrid" aria-label="Grid view">
+                        <span class="material-icons-round">grid_view</span>
+                    </button>
+                    <button class="view-btn" data-view="list" id="viewList" aria-label="List view">
+                        <span class="material-icons-round">view_list</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Courses Grid -->
+            <section class="courses-container" id="coursesContainer">
+                <div class="courses-grid" id="coursesGrid">
+                    <!-- Courses will be rendered dynamically -->
+                </div>
+                <!-- Empty State -->
+                <div class="empty-state hidden" id="emptyState">
+                    <span class="material-icons-round empty-icon">school</span>
+                    <h3>No se encontraron cursos</h3>
+                    <p>Intenta cambiar los filtros o crea un nuevo curso.</p>
+                    <button class="btn btn-primary" id="emptyAddBtn">
+                        <span class="material-icons-round">add</span>
+                        Crear Curso
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal: Add/Edit Course -->
+    <div class="modal-overlay" id="courseModal">
+        <div class="modal" role="dialog" aria-labelledby="modalTitle">
+            <div class="modal-header">
+                <h2 id="modalTitle">Nuevo Curso</h2>
+                <button class="modal-close" id="modalClose" aria-label="Close modal">
+                    <span class="material-icons-round">close</span>
+                </button>
+            </div>
+            <form class="modal-body" id="courseForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="courseName">Nombre del Curso <span class="required">*</span></label>
+                        <input type="text" id="courseName" placeholder="Ej: Introducción a Python" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="courseInstructor">Instructor <span class="required">*</span></label>
+                        <input type="text" id="courseInstructor" placeholder="Ej: Juan Pérez" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="courseDescription">Descripción</label>
+                    <textarea id="courseDescription" rows="3"
+                        placeholder="Describe brevemente el contenido del curso..."></textarea>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="courseCategory">Categoría <span class="required">*</span></label>
+                        <select id="courseCategory" required>
+                            <option value="">Seleccionar categoría</option>
+                            <option value="programming">Programación</option>
+                            <option value="design">Diseño</option>
+                            <option value="marketing">Marketing</option>
+                            <option value="business">Negocios</option>
+                            <option value="data">Datos & IA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="courseStatus">Estado</label>
+                        <select id="courseStatus">
+                            <option value="active">Activo</option>
+                            <option value="draft">Borrador</option>
+                            <option value="archived">Archivado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="courseDuration">Duración (horas)</label>
+                        <input type="number" id="courseDuration" placeholder="Ej: 40" min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="courseStudents">Estudiantes Inscritos</label>
+                        <input type="number" id="courseStudents" placeholder="Ej: 120" min="0">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="coursePrice">Precio (USD)</label>
+                        <input type="number" id="coursePrice" placeholder="Ej: 49.99" min="0" step="0.01">
+                    </div>
+                    <div class="form-group">
+                        <label for="courseLevel">Nivel</label>
+                        <select id="courseLevel">
+                            <option value="beginner">Principiante</option>
+                            <option value="intermediate">Intermedio</option>
+                            <option value="advanced">Avanzado</option>
+                        </select>
+                    </div>
+                </div>
+                <input type="hidden" id="courseId">
+            </form>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" id="modalCancel">Cancelar</button>
+                <button class="btn btn-primary" id="modalSave">
+                    <span class="material-icons-round">save</span>
+                    Guardar Curso
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Delete Confirmation -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal modal-sm" role="dialog" aria-labelledby="deleteModalTitle">
+            <div class="modal-header">
+                <h2 id="deleteModalTitle">Eliminar Curso</h2>
+                <button class="modal-close" id="deleteModalClose" aria-label="Close modal">
+                    <span class="material-icons-round">close</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="delete-warning">
+                    <span class="material-icons-round warning-icon">warning</span>
+                    <p>¿Estás seguro de que deseas eliminar el curso <strong id="deleteCourseName"></strong>? Esta
+                        acción no se puede deshacer.</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-ghost" id="deleteCancelBtn">Cancelar</button>
+                <button class="btn btn-danger" id="deleteConfirmBtn">
+                    <span class="material-icons-round">delete</span>
+                    Eliminar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
